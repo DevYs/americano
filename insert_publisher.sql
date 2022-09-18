@@ -1,20 +1,46 @@
-CREATE TABLE IF NOT EXISTS publisher (
-    publisher_no    INTEGER PRIMARY KEY AUTOINCREMENT,
-    name            TEXT NOT NULL,
-    website         TEXT NOT NULL,
-    rss_url         TEXT NOT NULL,
-    reg_date        TEXT NOT NULL,
-    mod_date        TEXT NOT NULL
-
-);
-
-CREATE TABLE IF NOT EXISTS news (
-    news_no     INTEGER PRIMARY KEY AUTOINCREMENT,
-    title       TEXT NOT NULL,
-    link        TEXT NOT NULL,
-    description TEXT NOT NULL,
-    pub_date    TEXT NOT NULL,
-    image       TEXT NOT NULL,
-    author      TEXT NOT NULL,
-    reg_date    TEXT NOT NULL
-);
+insert into publisher ( name, rss_url ) values ( '서울신문', 'https://www.seoul.co.kr/xml/rss/rss_top.xml' );
+insert into publisher ( name, rss_url ) values ( '미디어오늘', 'https://www.mediatoday.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( 'SBS 뉴스', 'https://news.sbs.co.kr/news/sitemapRSS.do' );
+insert into publisher ( name, rss_url ) values ( '동아일보', 'https://rss.donga.com/total.xml' );
+insert into publisher ( name, rss_url ) values ( '세계일보', 'https://www.segye.com/Articles/RSSList/segye_recent.xml' );
+insert into publisher ( name, rss_url ) values ( '아시아경제', 'https://www.asiae.co.kr/news/rss/asia_rss.htm' );
+insert into publisher ( name, rss_url ) values ( '더스쿠프', 'https://www.thescoop.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '스포츠춘추', 'https://www.spochoo.com/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '한겨레21', 'https://h21.hani.co.kr/rss/' );
+insert into publisher ( name, rss_url ) values ( '스포츠경향', 'https://www.khan.co.kr/rss/rssdata/total_news.xml' );
+insert into publisher ( name, rss_url ) values ( '서울파이낸스', 'http://www.seoulfn.com/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( 'The KoreaHeald', 'http://www.koreaherald.com/rss_xml.php' );
+insert into publisher ( name, rss_url ) values ( '오마이뉴스', 'http://rss.ohmynews.com/rss/ohmynews.xml' );
+insert into publisher ( name, rss_url ) values ( '스포츠조선', 'https://sports.chosun.com/rss/' );
+insert into publisher ( name, rss_url ) values ( '매일경제', 'https://www.mk.co.kr/rss/40300001/' );
+insert into publisher ( name, rss_url ) values ( '전자신문', 'https://rss.etnews.com/Section902.xml' );
+insert into publisher ( name, rss_url ) values ( '파이낸셜뉴스', 'https://www.fnnews.com/rss/r20/fn_realnews_all.xml' );
+insert into publisher ( name, rss_url ) values ( '베리타스알파', 'http://www.veritas-a.com/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '노컷뉴스', 'https://rss.nocutnews.co.kr/news/top.xml' );
+insert into publisher ( name, rss_url ) values ( '시사IN', 'https://www.sisain.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '한국경제TV', 'https://help.wowtv.co.kr/serviceinfo/newsstand/FeedRss/latest' );
+insert into publisher ( name, rss_url ) values ( '메트로신문', 'https://www.metroseoul.co.kr/news/rss' );
+insert into publisher ( name, rss_url ) values ( '인사이트코리아', 'http://www.insightkorea.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '이투데이', 'https://rss.etoday.co.kr/eto/etoday_news_all.xml' );
+insert into publisher ( name, rss_url ) values ( '한겨레', 'https://www.hani.co.kr/rss/' );
+insert into publisher ( name, rss_url ) values ( '프레시안', 'https://www.pressian.com/api/v3/site/rss/news' );
+insert into publisher ( name, rss_url ) values ( '뉴시스', 'https://newsis.com/RSS/sokbo.xml' );
+insert into publisher ( name, rss_url ) values ( '이데일리', 'http://rss.edaily.co.kr/edaily_news.xml' );
+insert into publisher ( name, rss_url ) values ( '신아일보', 'http://www.shinailbo.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '여성신문', 'http://www.womennews.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '소년한국일보', 'https://www.kidshankook.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '연합뉴스TV', 'https://www.yonhapnewstv.co.kr/browse/feed/' );
+insert into publisher ( name, rss_url ) values ( '국민일보', 'http://rss.kmib.co.kr/data/kmibRssAll.xml' );
+insert into publisher ( name, rss_url ) values ( '지디넷코리아', 'https://feeds.feedburner.com/zdkorea' );
+insert into publisher ( name, rss_url ) values ( 'CNB뉴스', 'https://www.cnbnews.com/data/rss/news.xml' );
+insert into publisher ( name, rss_url ) values ( '뉴스토마토', 'http://www.newstomato.com/rss/' );
+insert into publisher ( name, rss_url ) values ( '조세신문', 'http://www.joseilbo.com/Contents/rss/rss_total.php' );
+insert into publisher ( name, rss_url ) values ( '정신의학신문', 'http://www.psychiatricnews.net/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '일요시사', 'http://www.ilyosisa.co.kr/data/rss/news.xml' );
+insert into publisher ( name, rss_url ) values ( '경향신문', 'https://www.khan.co.kr/rss/rssdata/total_news.xml' );
+insert into publisher ( name, rss_url ) values ( '시사오늘(시사ON)', 'http://www.sisaon.co.kr/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '아주경제', 'https://rss.ajunews.com/sokbo.xml' );
+insert into publisher ( name, rss_url ) values ( '전기신문', 'https://www.electimes.com/rss/allArticle.xml' );
+insert into publisher ( name, rss_url ) values ( '머니S', 'https://moneys.mt.co.kr/moneyweek_news.xml' );
+insert into publisher ( name, rss_url ) values ( '데이터뉴스', 'https://www.datanews.co.kr/data/rss/news.xml' );
+insert into publisher ( name, rss_url ) values ( '식품저널', 'https://www.foodnews.co.kr/rss/allArticle.xml' );

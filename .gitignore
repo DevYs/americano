@@ -37,3 +37,4 @@ out/
 .vscode/
 
 sqlite.db
+americano.db
