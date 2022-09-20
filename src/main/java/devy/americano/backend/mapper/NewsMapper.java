@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+/** 뉴스기사 Mapper */
 @Mapper
 public interface NewsMapper {
 
