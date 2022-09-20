@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="devy.americano.backend.mapper.PublisherMapper">
 
-    <select id="selectPublisher" resultType="devy.americano.backend.domain.Publisher">
+    <select id="selectAllPublisher" resultType="devy.americano.backend.domain.Publisher">
         select * from publisher
         ;
     </select>

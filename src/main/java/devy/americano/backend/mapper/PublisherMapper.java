@@ -8,6 +8,6 @@ import java.util.List;
 @Mapper
 public interface PublisherMapper {
 
-    List<Publisher> selectPublisher();
+    List<Publisher> selectAllPublisher();
 
 }
