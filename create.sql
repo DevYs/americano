@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS publisher_rss (
 CREATE TABLE IF NOT EXISTS news (
     news_no     INTEGER     PRIMARY KEY AUTOINCREMENT,
     title       TEXT        NOT NULL,
-    link        TEXT        NOT NULL,
+    link        TEXT        UNIQUE NOT NULL,
     description TEXT        NOT NULL,
     pub_date    TEXT        NOT NULL,
     image       TEXT        NOT NULL,

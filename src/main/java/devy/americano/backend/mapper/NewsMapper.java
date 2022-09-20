@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface NewsMapper {
 
-    List<News> selectNews();
+    List<News> selectAllNews();
 
+    int insertNews(News news);
 }
