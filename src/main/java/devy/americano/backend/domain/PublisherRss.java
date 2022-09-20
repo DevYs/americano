@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 언론사 RSS Data
@@ -23,4 +24,12 @@ public class PublisherRss {
     private LocalDateTime regDate;
     /** 수정일 */
     private LocalDateTime modDate;
+
+    public void setRegDate(String regDate) {
+        this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
+    }
+
+    public void setModDate(String modDate) {
+        this.modDate = LocalDateTime.parse(modDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
+    }
 }

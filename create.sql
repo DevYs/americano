@@ -3,8 +3,8 @@ CREATE TABLE IF NOT EXISTS publisher_rss (
     favicon             TEXT        NOT NULL,
     name                TEXT        NOT NULL,
     rss_url             TEXT        NOT NULL,
-    reg_date            TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    mod_date            TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+    reg_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    mod_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS news (
@@ -15,5 +15,5 @@ CREATE TABLE IF NOT EXISTS news (
     pub_date    TEXT        NOT NULL,
     image       TEXT        NOT NULL,
     author      TEXT        NOT NULL,
-    reg_date    TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+    reg_date    NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

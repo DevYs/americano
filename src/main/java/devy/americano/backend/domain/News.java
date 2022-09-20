@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /** 뉴스기사 */
 @Getter @Setter @ToString
@@ -25,4 +26,8 @@ public class News {
     private String author;
     /** 등록일 */
     private LocalDateTime regDate;
+
+    public void setRegDate(String regDate) {
+        this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
+    }
 }
