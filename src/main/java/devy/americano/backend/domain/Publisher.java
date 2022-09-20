@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter @Setter @ToString
 public class Publisher {
     private int publisherNo;
+    private String favicon;
     private String name;
     private String rssUrl;
     private LocalDateTime regDate;
