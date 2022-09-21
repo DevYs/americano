@@ -12,6 +12,8 @@ import java.time.format.DateTimeFormatter;
 public class News {
     /** 뉴스기사 식별자 */
     private int newsNo;
+    /** 언론사 RSS 식별자 */
+    private int publisherRssNo;
     /** 뉴스기사 제목 */
     private String title;
     /** 뉴스기사 원본 링크 */
@@ -29,5 +31,15 @@ public class News {
 
     public void setRegDate(String regDate) {
         this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
+    }
+
+    public boolean hasNull() {
+        if(title == null) { return true; }
+        if(link == null) { return true; }
+        if(description == null) { return true; }
+        if(pubDate == null) { return true; }
+        if(image == null) { return true; }
+
+        return false;
     }
 }

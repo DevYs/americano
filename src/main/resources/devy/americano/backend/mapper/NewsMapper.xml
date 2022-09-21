@@ -8,8 +8,8 @@
     </select>
 
     <insert id="insertNews">
-        insert or ignore into news ( title, link, description, pub_date, image, author )
-        values ( #{title}, #{link}, #{description}, #{pubDate}, #{image}, #{author} );
+        insert or ignore into news ( publisher_rss_no, title, link, description, pub_date, image, author )
+        values ( #{publisherRssNo}, #{title}, #{link}, #{description}, #{pubDate}, #{image}, #{author} );
     </insert>
 
 </mapper>

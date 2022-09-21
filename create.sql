@@ -8,12 +8,14 @@ CREATE TABLE IF NOT EXISTS publisher_rss (
 );
 
 CREATE TABLE IF NOT EXISTS news (
-    news_no     INTEGER     PRIMARY KEY AUTOINCREMENT,
-    title       TEXT        NOT NULL,
-    link        TEXT        UNIQUE NOT NULL,
-    description TEXT        NOT NULL,
-    pub_date    TEXT        NOT NULL,
-    image       TEXT        NOT NULL,
-    author      TEXT        NOT NULL,
-    reg_date    NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP
+    news_no             INTEGER     PRIMARY KEY AUTOINCREMENT,
+    publisher_rss_no    INTEGER     NOT NULL,
+    title               TEXT        NOT NULL,
+    link                TEXT        UNIQUE NOT NULL,
+    description         TEXT        NOT NULL,
+    pub_date            TEXT        NOT NULL,
+    image               TEXT        NOT NULL,
+    author              TEXT        NOT NULL,
+    reg_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(publisher_rss_no) REFERENCES publisher_rss(publisher_rss_no)
 );
