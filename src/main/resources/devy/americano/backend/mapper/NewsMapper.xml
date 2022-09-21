@@ -4,6 +4,7 @@
 
     <select id="selectAllNews" resultType="devy.americano.backend.domain.News">
         select * from news
+        order by reg_date desc
         ;
     </select>
 
