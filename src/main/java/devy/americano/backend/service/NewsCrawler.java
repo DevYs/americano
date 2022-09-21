@@ -94,7 +94,7 @@ public class NewsCrawler {
         if(0 < document.select("meta[property='article:published_time']").size()) {
             String content = document.select("meta[property='article:published_time']").get(0).attr("content");
             if(0 < content.trim().length()) {
-                news.setPubDate(DateFormatter.format(content));
+                news.setPubDate(DateFormatter.format(content).toString());
                 return this;
             }
         }

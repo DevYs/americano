@@ -13,8 +13,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class NewsService {
-
     private final NewsMapper newsMapper;
+
+    public List<News> newsList() {
+        return newsMapper.selectAllNews();
+    }
 
     public void insertNewsList(List<News> newsList) {
         for(News news : newsList) {

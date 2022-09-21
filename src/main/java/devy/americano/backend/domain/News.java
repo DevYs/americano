@@ -1,5 +1,6 @@
 package devy.americano.backend.domain;
 
+import devy.americano.backend.service.DateFormatter;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -28,6 +29,14 @@ public class News {
     private String author;
     /** 등록일 */
     private LocalDateTime regDate;
+
+    public void setPubDate(String pubDate) {
+        if(pubDate.contains("T")) {
+            this.pubDate = LocalDateTime.parse(pubDate);
+        } else {
+            this.pubDate = LocalDateTime.parse(pubDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        }
+    }
 
     public void setRegDate(String regDate) {
         this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);

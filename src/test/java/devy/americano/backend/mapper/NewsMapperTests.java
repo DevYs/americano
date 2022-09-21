@@ -23,7 +23,7 @@ public class NewsMapperTests {
         news.setDescription("test");
         news.setAuthor("test");
         news.setImage("https://www.test.com/image.jpg");
-        news.setPubDate(LocalDateTime.now());
+        news.setPubDate(LocalDateTime.now().toString());
 
         newsMapper.insertNews(news);
         newsMapper.insertNews(news);

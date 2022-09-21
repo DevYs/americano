@@ -84,7 +84,7 @@ public class RssParser {
         return null;
     }
 
-    private LocalDateTime getPubDate(Element item) {
+    private String getPubDate(Element item) {
         String pubDate = null;
 
         if(0 < item.getElementsByTag("pubDate").size()) {
@@ -95,7 +95,7 @@ public class RssParser {
             pubDate = item.getElementsByTag("dc:date").get(0).text();
         }
 
-        return DateFormatter.format(pubDate);
+        return DateFormatter.format(pubDate).toString();
     }
 
     private String getImage(Element item) {
