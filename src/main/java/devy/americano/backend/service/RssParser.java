@@ -95,7 +95,11 @@ public class RssParser {
             pubDate = item.getElementsByTag("dc:date").get(0).text();
         }
 
-        return DateFormatter.format(pubDate).toString();
+        if(pubDate != null) {
+            return DateFormatter.format(pubDate).toString();
+        }
+
+        return pubDate;
     }
 
     private String getImage(Element item) {
