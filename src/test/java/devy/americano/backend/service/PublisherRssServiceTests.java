@@ -10,7 +10,7 @@ import java.util.List;
 
 /** 언론사 RSS 정보 관련 쿼리 테스트 */
 @SpringBootTest
-//@Transactional
+@Transactional
 public class PublisherRssServiceTests {
 
     /** 언론사 RSS 정보 Service */

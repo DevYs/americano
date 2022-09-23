@@ -30,7 +30,12 @@ public class PublisherRssService {
         RssParser rssParser;
 
         for(PublisherRss publisherRss : publisherRssList) {
-            if(publisherRss.getPublisherRssNo() == 9 || publisherRss.getPublisherRssNo() == 35 || publisherRss.getPublisherRssNo() == 45) {
+            if(publisherRss.getPublisherRssNo() == 5
+                    || publisherRss.getPublisherRssNo() == 9
+                    || publisherRss.getPublisherRssNo() == 17
+                    || publisherRss.getPublisherRssNo() == 35
+                    || publisherRss.getPublisherRssNo() == 45
+            ) {
                 continue;
             }
 
@@ -46,7 +51,12 @@ public class PublisherRssService {
             List<News> list = rssParser.getNewsList();
             for(News news : list) {
                 if(news.getLink() != null && !news.getLink().trim().isEmpty()) {
-                    NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
+                    try {
+                        NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
+                    } catch(NullPointerException e) {
+                        logger.info("Error to Crawling : " + news.getLink());
+                        e.printStackTrace();
+                    }
                 }
             }
 
@@ -54,20 +64,15 @@ public class PublisherRssService {
         }
 
         List<News> list = newsList.stream().filter(news -> !news.hasNull()).collect(Collectors.toList());
-        for(News news : list) {
-            logger.info("=======================================================================");
-            logger.info("PublisherRssNo " + news.getPublisherRssNo());
-            logger.info("Title " + news.getTitle());
-            logger.info("Link " + news.getLink());
-            logger.info("Image " + news.getImage());
-            logger.info("Author " + news.getAuthor());
-            logger.info("PubDate " + news.getPubDate());
-            logger.info("=======================================================================");
-
-        }
-
         Collections.shuffle(list);
 
+        logger.info("========================================================================");
+        logger.info("========================================================================");
+        logger.info("========================================================================");
+        logger.info("뉴스 수집 완료");
+        logger.info("========================================================================");
+        logger.info("========================================================================");
+        logger.info("========================================================================");
         return list;
     }
 

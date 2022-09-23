@@ -9,7 +9,9 @@ public class DateFormatter {
         String ldt = localDateTime.replace("<![CDATA[ ", "")
                 .replace("<![CDATA[", "")
                 .replace(" ]]>", "")
-                .replace("]]>", "");
+                .replace("]]>", "")
+                .replace("  ", " ")
+                ;
 
         try {
             return LocalDateTime.parse(ldt, DateTimeFormatter.RFC_1123_DATE_TIME);
@@ -29,6 +31,10 @@ public class DateFormatter {
 
         try {
             return LocalDateTime.parse(ldt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        } catch(Exception e) {}
+
+        try {
+            return LocalDateTime.parse(ldt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssZ"));
         } catch(Exception e) {}
 
         return null;

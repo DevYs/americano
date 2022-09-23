@@ -29,6 +29,8 @@ public class NewsCrawler {
     public NewsCrawler image() throws NullPointerException {
         if(news.getImage() != null && 0 < news.getImage().trim().length()) {
             return this;
+        } else if(document == null) {
+            return this;
         }
 
         if(0 < document.select("meta[property='og:image']").size()) {
@@ -44,6 +46,8 @@ public class NewsCrawler {
 
     public NewsCrawler author() throws NullPointerException {
         if(news.getAuthor() != null && 0 < news.getAuthor().trim().length()) {
+            return this;
+        } else if(document == null) {
             return this;
         }
 
@@ -88,6 +92,8 @@ public class NewsCrawler {
 
     public NewsCrawler pubDate() throws NullPointerException {
         if(news.getPubDate() != null) {
+            return this;
+        } else if(document == null) {
             return this;
         }
 

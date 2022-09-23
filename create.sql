@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS news (
     publisher_rss_no    INTEGER     NOT NULL,
     title               TEXT        NOT NULL,
     link                TEXT        UNIQUE NOT NULL,
-    description         TEXT        NOT NULL,
+    description         TEXT        ,
     pub_date            TEXT        NOT NULL,
     image               TEXT        NOT NULL,
-    author              TEXT        NOT NULL,
+    author              TEXT        ,
     reg_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(publisher_rss_no) REFERENCES publisher_rss(publisher_rss_no)
 );

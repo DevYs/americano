@@ -6,13 +6,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RssParser {
+    private final Logger logger = LoggerFactory.getLogger(RssParser.class);
     private final PublisherRss publisherRss;
     private final Document document;
 
@@ -42,7 +44,9 @@ public class RssParser {
         for(int i=0; i<limit; i++) {
             Element item = items.get(i);
             News news = getNews(item);
-            newsList.add(news);
+            if(news != null) {
+                newsList.add(news);
+            }
         }
 
         return newsList;
@@ -50,13 +54,21 @@ public class RssParser {
 
     private News getNews(Element item) {
         News news = new News();
-        news.setPublisherRssNo(this.publisherRss.getPublisherRssNo());
-        news.setTitle(getTitle(item));
-        news.setDescription(getDescription(item));
-        news.setLink(getLink(item));
-        news.setPubDate(getPubDate(item));
-        news.setImage(getImage(item));
-        news.setAuthor(getAuthor(item));
+
+        try {
+            news.setPublisherRssNo(this.publisherRss.getPublisherRssNo());
+            news.setTitle(getTitle(item));
+            news.setDescription(getDescription(item));
+            news.setLink(getLink(item));
+            news.setPubDate(getPubDate(item));
+            news.setImage(getImage(item));
+            news.setAuthor(getAuthor(item));
+        } catch(Exception e) {
+            logger.info("Error to RSS parsing : " + item.toString());
+            e.printStackTrace();
+            return null;
+        }
+
         return news;
     }
 
@@ -95,9 +107,13 @@ public class RssParser {
             pubDate = item.getElementsByTag("dc:date").get(0).text();
         }
 
-        if(pubDate != null) {
-            return DateFormatter.format(pubDate).toString();
+        try {
+            pubDate = DateFormatter.format(pubDate).toString();
+        } catch(Exception e) {
+            e.printStackTrace();
+            logger.info("Not supported date format : " + pubDate);
         }
+
 
         return pubDate;
     }
