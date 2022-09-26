@@ -43,9 +43,12 @@ public class PublisherRssService {
             logger.info("RssUrl " + publisherRss.getRssUrl());
             try {
                 rssParser = RssParser.rssParser(publisherRss);
-            } catch (IOException e) {
+                if(rssParser == null) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
-                return null;
+                continue;
             }
 
             List<News> list = rssParser.getNewsList();
@@ -53,7 +56,7 @@ public class PublisherRssService {
                 if(news.getLink() != null && !news.getLink().trim().isEmpty()) {
                     try {
                         NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
-                    } catch(NullPointerException e) {
+                    } catch(Exception e) {
                         logger.info("Error to Crawling : " + news.getLink());
                         e.printStackTrace();
                     }

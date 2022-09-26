@@ -23,8 +23,14 @@ public class RssParser {
         this.document = document;
     }
 
-    public static RssParser rssParser(PublisherRss publisherRss) throws IOException {
-        Document document = Jsoup.connect(publisherRss.getRssUrl()).ignoreContentType(true).get();
+    public static RssParser rssParser(PublisherRss publisherRss) {
+        Document document = null;
+        try {
+            document = Jsoup.connect(publisherRss.getRssUrl()).ignoreContentType(true).get();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
         return new RssParser(publisherRss, document);
     }
 

@@ -30,7 +30,7 @@ public class News {
     /** 등록일 */
     private LocalDateTime regDate;
 
-    public void setPubDate(String pubDate) {
+    public void setPubDate(String pubDate) throws Exception {
         if(pubDate.contains("T")) {
             this.pubDate = LocalDateTime.parse(pubDate);
         } else {

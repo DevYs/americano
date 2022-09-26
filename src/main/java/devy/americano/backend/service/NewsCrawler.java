@@ -90,7 +90,7 @@ public class NewsCrawler {
         return this;
     }
 
-    public NewsCrawler pubDate() throws NullPointerException {
+    public NewsCrawler pubDate() throws Exception {
         if(news.getPubDate() != null) {
             return this;
         } else if(document == null) {

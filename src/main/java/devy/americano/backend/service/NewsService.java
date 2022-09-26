@@ -20,6 +20,10 @@ public class NewsService {
     }
 
     public void insertNewsList(List<News> newsList) {
+        if(newsList == null || newsList.size() == 0) {
+            return;
+        }
+
         for(News news : newsList) {
             newsMapper.insertNews(news);
         }
