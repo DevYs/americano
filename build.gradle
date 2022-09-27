@@ -33,6 +33,48 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+tasks {
+	processResources {
+		duplicatesStrategy = org.gradle.api.file.DuplicatesStrategy.INCLUDE
+	}
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+/**
+ * local, test 등 프로파일 설정 분리
+ * bootRun, build 등의 tast 실행시 설정하는 profile
+ * ex) $ ./gradlew build -Pprofile=test
+ */
+ext.profile = (!project.hasProperty('profile') || !profile) ? '' : profile
+sourceSets {
+	String profile = "${profile}";
+	String resourcesPath = "src/main/resources/"
+	String testResourcesPath = "src/main/resources/"
+
+	if(profile != 'local') {
+		resourcesPath = "src/main/resources-${profile}/";
+		testResourcesPath = "src/main/resources-${profile}/";
+	}
+
+	main {
+		resources {
+			srcDirs resourcesPath
+		}
+	}
+	test {
+		resources {
+			srcDirs testResourcesPath
+		}
+	}
+}
+
+/**
+ * 빌드 과정에서 version을 지정한다
+ */
+build {
+	System.out.println("building for [${profile}] application.properties");
+	version =  "${profile}-${version}"
 }
