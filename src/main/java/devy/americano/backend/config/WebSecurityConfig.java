@@ -1,16 +1,18 @@
 package devy.americano.backend.config;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
 	/**
 	 * 설정에서 틀린 부분이 없지만 403 에러가 발생할 수 있다<br>
@@ -19,19 +21,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 * 모든 JAVA 웹 앱이 로그인에 성공하면 'JSESSIONID'라는 쿠키를 발행하게 된다.
 	 * 로그인을 할때마다 로그인에 성공한 웹 앱의 JSESSIONID 쿠키로 교체되기 때문에 웹 앱은 인증과 권한을 잃게 된다.
 	 */
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-			.authorizeRequests()
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		return http.csrf().disable()
+				.authorizeRequests()
 				.anyRequest().permitAll()
 				.and()
-			.sessionManagement()
+				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
-			.cors()
+				.cors()
 				.and()
-			.formLogin()
+				.formLogin()
 				.disable()
+				.build()
 		;
 	}
 
