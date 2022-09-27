@@ -27,6 +27,8 @@ public class News {
     private String image;
     /** 기자명 */
     private String author;
+    /** 카드타입 */
+    private int cardType;
     /** 등록일 */
     private LocalDateTime regDate;
 

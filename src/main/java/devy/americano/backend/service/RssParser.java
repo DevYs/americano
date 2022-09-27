@@ -12,15 +12,18 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RssParser {
     private final Logger logger = LoggerFactory.getLogger(RssParser.class);
     private final PublisherRss publisherRss;
     private final Document document;
+    private final Random random;
 
     private RssParser(PublisherRss publisherRss, Document document) {
         this.publisherRss = publisherRss;
         this.document = document;
+        this.random = new Random();
     }
 
     public static RssParser rssParser(PublisherRss publisherRss) {
@@ -69,6 +72,7 @@ public class RssParser {
             news.setPubDate(getPubDate(item));
             news.setImage(getImage(item));
             news.setAuthor(getAuthor(item));
+            news.setCardType(random.nextInt(10) < 3 ? 0 : 1);
         } catch(Exception e) {
             logger.info("Error to RSS parsing : " + item.toString());
             e.printStackTrace();
