@@ -8,6 +8,13 @@
         ;
     </select>
 
+    <select id="selectNews" resultType="devy.americano.backend.domain.News">
+        select * from news
+        order by reg_date desc
+        limit #{offset}, #{limit}
+        ;
+    </select>
+
     <insert id="insertNews">
         insert or ignore into news ( publisher_rss_no, title, link, description, pub_date, image, author, card_type )
         values ( #{publisherRssNo}, #{title}, #{link}, #{description}, #{pubDate}, #{image}, #{author}, #{cardType} );

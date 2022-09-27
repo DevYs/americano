@@ -19,6 +19,12 @@ public class NewsService {
         return newsMapper.selectAllNews();
     }
 
+    public List<News> searchNews(int pageNo) {
+        int limit = 20;
+        int offset = (pageNo - 1) * limit;
+        return newsMapper.selectNews(limit, offset);
+    }
+
     public void insertNewsList(List<News> newsList) {
         if(newsList == null || newsList.size() == 0) {
             return;

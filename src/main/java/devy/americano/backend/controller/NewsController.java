@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,11 @@ public class NewsController {
     @GetMapping("/list")
     public List<News> newsList() {
         return newsService.newsList();
+    }
+
+    @GetMapping("/search/{pageNo}")
+    public List<News> newsList(@PathVariable("pageNo") Integer pageNo) {
+        return newsService.searchNews(pageNo);
     }
 
 }
