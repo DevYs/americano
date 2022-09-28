@@ -46,3 +46,4 @@ insert into publisher_rss ( name, favicon, rss_url ) values ( '데이터뉴스',
 insert into publisher_rss ( name, favicon, rss_url ) values ( '식품저널', 'https://www.foodnews.co.kr/image/logo/snslogo_20210201050118.jpg', 'https://www.foodnews.co.kr/rss/allArticle.xml' );
 insert into publisher_rss ( name, favicon, rss_url ) values ( 'ITWorld Korea', 'https://www.itworld.co.kr/_images/favicon.ico', 'https://www.itworld.co.kr/rss/feed/index.php' );
 insert into publisher_rss ( name, favicon, rss_url ) values ( '대한전문건설신문', 'https://www.koscaj.com/image/logo/toplogo_20190418053833.png', 'https://www.koscaj.com/rss/allArticle.xml' );
+insert into publisher_rss ( name, favicon, rss_url ) values ( '조선일보', 'https://www.chosun.com/pf/resources/icons/favicon_chosun.png?d=844', 'https://www.chosun.com/arc/outboundfeeds/rss/?outputType=xml' );
