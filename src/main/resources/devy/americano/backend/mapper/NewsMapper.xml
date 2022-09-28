@@ -22,7 +22,7 @@
             n.card_type
         from news n
         join publisher_rss pr on pr.publisher_rss_no = n.publisher_rss_no
-        order by n.reg_date desc
+        order by n.pub_date desc
         limit #{offset}, #{limit}
         ;
     </select>
