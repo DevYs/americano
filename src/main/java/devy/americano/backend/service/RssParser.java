@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -118,7 +119,12 @@ public class RssParser {
         }
 
         try {
-            pubDate = DateFormatter.format(pubDate).toString();
+            LocalDateTime pubDateLDT = DateFormatter.format(pubDate);
+            if(this.publisherRss.getPublisherRssNo() == 49) {
+                pubDate = pubDateLDT.plusHours(9).toString();
+            } else {
+                pubDate = pubDateLDT.toString();
+            }
         } catch(Exception e) {
             e.printStackTrace();
             logger.info("Not supported date format : " + pubDate);
