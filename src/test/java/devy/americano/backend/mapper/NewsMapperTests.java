@@ -16,7 +16,7 @@ public class NewsMapperTests {
     private NewsMapper newsMapper;
 
     @Test
-    public void testInsertNews() {
+    public void testInsertNews() throws Exception {
         News news = new News();
         news.setTitle("테스트");
         news.setLink("https://www.test.com");

@@ -1,7 +1,12 @@
 package devy.americano.backend.service;
 
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class DateFormatter {
 
@@ -11,11 +16,12 @@ public class DateFormatter {
                 .replace(" ]]>", "")
                 .replace("]]>", "")
                 .replace("  ", " ")
+                .replace("KST", "GMT")
                 ;
 
         try {
             return LocalDateTime.parse(ldt, DateTimeFormatter.RFC_1123_DATE_TIME);
-        } catch(Exception e) {}
+        } catch(Exception e) { }
 
         try {
             return LocalDateTime.parse(ldt, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
