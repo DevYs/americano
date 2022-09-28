@@ -1,6 +1,7 @@
 package devy.americano.backend.mapper;
 
 import devy.americano.backend.domain.News;
+import devy.americano.backend.domain.NewsContents;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,7 +13,7 @@ public interface NewsMapper {
 
     List<News> selectAllNews();
 
-    List<News> selectNews(@Param("limit") int limit, @Param("offset") int offset);
+    List<NewsContents> selectNewsContents(@Param("limit") int limit, @Param("offset") int offset);
 
     int insertNews(News news);
 }

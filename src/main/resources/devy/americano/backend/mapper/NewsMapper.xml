@@ -8,9 +8,21 @@
         ;
     </select>
 
-    <select id="selectNews" resultType="devy.americano.backend.domain.News">
-        select * from news
-        order by reg_date desc
+    <select id="selectNewsContents" resultType="devy.americano.backend.domain.NewsContents">
+        select
+            n.news_no,
+            pr.name as publisher,
+            pr.favicon,
+            n.title,
+            n.link,
+            n.description,
+            n.pub_date,
+            n.image,
+            n.author,
+            n.card_type
+        from news n
+        join publisher_rss pr on pr.publisher_rss_no = n.publisher_rss_no
+        order by n.reg_date desc
         limit #{offset}, #{limit}
         ;
     </select>

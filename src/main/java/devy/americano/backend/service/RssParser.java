@@ -137,12 +137,12 @@ public class RssParser {
             return item.getElementsByTag("image").get(0).text();
         }
 
-        if(0 < item.getElementsByTag("media:content").size()) {
-            return item.getElementsByTag("media:content").get(0).text();
-        }
-
         if(0 < item.getElementsByTag("media:thumbnail").size()) {
             return item.getElementsByTag("media:thumbnail").get(0).text();
+        }
+
+        if(0 < item.getElementsByTag("media:content").size()) {
+            return item.getElementsByTag("media:content").get(0).text();
         }
 
         return null;

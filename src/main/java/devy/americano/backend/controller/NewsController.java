@@ -1,6 +1,7 @@
 package devy.americano.backend.controller;
 
 import devy.americano.backend.domain.News;
+import devy.americano.backend.domain.NewsContents;
 import devy.americano.backend.service.NewsService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -27,8 +28,8 @@ public class NewsController {
     }
 
     @GetMapping("/search/{pageNo}")
-    public List<News> newsList(@PathVariable("pageNo") Integer pageNo) {
-        return newsService.searchNews(pageNo);
+    public List<NewsContents> newsList(@PathVariable("pageNo") Integer pageNo) {
+        return newsService.searchNewsContents(pageNo);
     }
 
 }
