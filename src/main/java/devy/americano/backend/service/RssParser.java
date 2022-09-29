@@ -75,7 +75,7 @@ public class RssParser {
             news.setPubDate(getPubDate(item));
             news.setImage(getImage(item));
             news.setAuthor(getAuthor(item));
-            news.setCardType(random.nextInt(10) < 3 ? 0 : 1);
+            news.setCardType(random.nextInt(10) < 3 ? 1 : 0);
         } catch(Exception e) {
             logger.info("Error to RSS parsing : " + item.toString());
             e.printStackTrace();
