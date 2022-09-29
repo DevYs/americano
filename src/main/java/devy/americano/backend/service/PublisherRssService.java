@@ -79,4 +79,37 @@ public class PublisherRssService {
         return list;
     }
 
+    public List<News> rssByNo(int rssNo) {
+        PublisherRss publisherRss = publisherRssMapper.selectPublisherRssByNo(rssNo);
+        RssParser rssParser = null;
+
+        logger.info("Publisher " + publisherRss.getName());
+        logger.info("RssUrl " + publisherRss.getRssUrl());
+        try {
+            rssParser = RssParser.rssParser(publisherRss);
+            if(rssParser == null) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<News> newsList = rssParser.getNewsList();
+        for(News news : newsList) {
+            if(news.getLink() != null && !news.getLink().trim().isEmpty()) {
+                try {
+                    NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
+                } catch(Exception e) {
+                    logger.info("Error to Crawling : " + news.getLink());
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        Collections.shuffle(newsList.stream().filter(news -> !news.hasNull()).collect(Collectors.toList()));
+        logger.info("뉴스 수집 완료");
+
+        return newsList;
+    }
+
 }

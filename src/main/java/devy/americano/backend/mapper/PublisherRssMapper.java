@@ -10,6 +10,12 @@ import java.util.List;
 public interface PublisherRssMapper {
 
     /**
+     * 언론사 RSS 정보를 조회한다.
+     * @return 언론사 RSS 정보
+     */
+    PublisherRss selectPublisherRssByNo(Integer rssNo);
+
+    /**
      * 모든 언론사 RSS 정보를 조회한다.
      * @return 모든 언론사 RSS 정보
      */

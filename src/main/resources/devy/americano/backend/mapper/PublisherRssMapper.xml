@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="devy.americano.backend.mapper.PublisherRssMapper">
 
+    <!-- 언론사 RSS 정보 -->
+    <select id="selectPublisherRssByNo" resultType="devy.americano.backend.domain.PublisherRss">
+        select * from publisher_rss
+        where publisher_rss_no = ${rssNo}
+        ;
+    </select>
+
     <!-- 모든 언론사 RSS 정보 -->
     <select id="selectAllPublisherRss" resultType="devy.americano.backend.domain.PublisherRss">
         select * from publisher_rss
