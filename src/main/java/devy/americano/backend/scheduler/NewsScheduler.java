@@ -19,14 +19,14 @@ public class NewsScheduler {
 
     private final Logger logger = LoggerFactory.getLogger(NewsScheduler.class);
 
-    private final long FIXED_RATE_VALUE = 5 * 60 * 1000;
+    private final long INITIAL_DELAY_VALUE = 5 * 60 * 1000;
+    private final long FIXED_RATE_VALUE = 30 * 60 * 1000;
 
     private final PublisherRssService publisherRssService;
 
     private final NewsService newsService;
 
-    @Scheduled(fixedRate = FIXED_RATE_VALUE, initialDelay = FIXED_RATE_VALUE)
-//    @Scheduled(fixedRate = FIXED_RATE_VALUE)
+    @Scheduled(fixedRate = FIXED_RATE_VALUE, initialDelay = INITIAL_DELAY_VALUE)
     public void run() {
         List<News> newsList = publisherRssService.rss();
         newsService.insertNewsList(newsList);
