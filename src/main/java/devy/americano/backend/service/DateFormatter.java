@@ -1,17 +1,13 @@
 package devy.americano.backend.service;
 
-import org.slf4j.LoggerFactory;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class DateFormatter {
 
     public static LocalDateTime format(String localDateTime) {
+        int today = LocalDateTime.now().getDayOfMonth();
         String ldt = localDateTime.replace("<![CDATA[ ", "")
                 .replace("<![CDATA[", "")
                 .replace(" ]]>", "")
@@ -19,6 +15,14 @@ public class DateFormatter {
                 .replace("  ", " ")
                 .replace("KST", "GMT")
                 .replace(".", "-")
+                .replace("+09:00", "")
+                .replace("Mon," + today, "Mon, " + today)
+                .replace("Tue," + today, "Tue, " + today)
+                .replace("Wed," + today, "Wed, " + today)
+                .replace("Thu," + today, "Thu, " + today)
+                .replace("Fri," + today, "Fri, " + today)
+                .replace("Sat," + today, "Sat, " + today)
+                .replace("Sun," + today, "Sun, " + today)
                 ;
 
         try {
@@ -26,10 +30,16 @@ public class DateFormatter {
         } catch(Exception e) {}
 
         try {
+            return LocalDateTime.parse(ldt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        } catch(Exception e) {}
+
+        try {
+            return LocalDateTime.parse(ldt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssZ"));
+        } catch(Exception e) {}
+
+        try {
             return LocalDate.parse(ldt, DateTimeFormatter.ISO_LOCAL_DATE).atStartOfDay();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        } catch(Exception e) {}
 
         try {
             return LocalDateTime.parse(ldt, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
@@ -41,14 +51,6 @@ public class DateFormatter {
 
         try {
             return LocalDateTime.parse(ldt, DateTimeFormatter.ISO_INSTANT);
-        } catch(Exception e) {}
-
-        try {
-            return LocalDateTime.parse(ldt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        } catch(Exception e) {}
-
-        try {
-            return LocalDateTime.parse(ldt, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ssZ"));
         } catch(Exception e) {}
 
         return null;

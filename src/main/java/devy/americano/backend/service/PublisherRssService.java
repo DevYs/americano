@@ -112,4 +112,8 @@ public class PublisherRssService {
         return newsList;
     }
 
+    public List<PublisherRss> allPublisherRssList() {
+        return publisherRssMapper.selectAllPublisherRss();
+    }
+
 }

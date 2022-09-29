@@ -18,6 +18,10 @@ public class NewsCrawler {
 
     public static NewsCrawler newsCrawler(PublisherRss publisherRss, News news) {
         try {
+            if(!news.getLink().contains("http://") && !news.getLink().contains("https://")) {
+                return new NewsCrawler(publisherRss, news, Jsoup.connect(publisherRss.getDomain() + news.getLink()).get());
+            }
+
             return new NewsCrawler(publisherRss, news, Jsoup.connect(news.getLink()).get());
         } catch (Exception e) {
             e.printStackTrace();

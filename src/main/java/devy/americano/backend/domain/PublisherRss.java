@@ -24,6 +24,8 @@ public class PublisherRss {
     private LocalDateTime regDate;
     /** 수정일 */
     private LocalDateTime modDate;
+    /** 수정일 */
+    private String domain;
 
     public void setRegDate(String regDate) {
         this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
