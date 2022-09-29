@@ -39,7 +39,7 @@ public class NewsService {
     }
 
     public void removeOldNews() {
-        LocalDateTime date = LocalDateTime.now().minusHours(9 + 5);
+        LocalDateTime date = LocalDateTime.now().minusHours(9 + 2);
         newsMapper.deleteOldNews(date);
     }
 
