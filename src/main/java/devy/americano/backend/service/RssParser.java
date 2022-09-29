@@ -102,6 +102,13 @@ public class RssParser {
     }
 
     private String getLink(Element item) {
+        if(this.publisherRss.getPublisherRssNo() == 17) {
+            if(item.toString().indexOf("</link>") == -1) {
+                String itemStr = item.toString();
+                return itemStr.substring(itemStr.indexOf("<link>"), itemStr.indexOf("<description>")).replace("<link>", "");
+            }
+        }
+
         if(0 < item.getElementsByTag("link").size()) {
             return item.getElementsByTag("link").get(0).text();
         }
