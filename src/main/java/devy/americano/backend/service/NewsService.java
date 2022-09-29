@@ -6,6 +6,8 @@ import devy.americano.backend.mapper.NewsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -34,6 +36,11 @@ public class NewsService {
         for(News news : newsList) {
             newsMapper.insertNews(news);
         }
+    }
+
+    public void removeOldNews() {
+        LocalDateTime date = LocalDateTime.now().minusHours(5);
+        newsMapper.deleteOldNews(date);
     }
 
 }

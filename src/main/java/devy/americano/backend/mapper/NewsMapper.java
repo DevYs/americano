@@ -5,6 +5,7 @@ import devy.americano.backend.domain.NewsContents;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /** 뉴스기사 Mapper */
@@ -16,4 +17,6 @@ public interface NewsMapper {
     List<NewsContents> selectNewsContents(@Param("limit") int limit, @Param("offset") int offset);
 
     int insertNews(News news);
+
+    int deleteOldNews(@Param("date") LocalDateTime date);
 }

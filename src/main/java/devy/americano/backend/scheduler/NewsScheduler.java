@@ -20,7 +20,7 @@ public class NewsScheduler {
     private final Logger logger = LoggerFactory.getLogger(NewsScheduler.class);
 
     private final long INITIAL_DELAY_VALUE = 5 * 60 * 1000;
-    private final long FIXED_RATE_VALUE = 30 * 60 * 1000;
+    private final long FIXED_RATE_VALUE = 10 * 60 * 1000;
 
     private final PublisherRssService publisherRssService;
 
