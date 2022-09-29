@@ -12,10 +12,12 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class RssParser {
+    private final Integer[] utcTime = new Integer[] { 33, 49 };
     private final Logger logger = LoggerFactory.getLogger(RssParser.class);
     private final PublisherRss publisherRss;
     private final Document document;
@@ -120,7 +122,7 @@ public class RssParser {
 
         try {
             LocalDateTime pubDateLDT = DateFormatter.format(pubDate);
-            if(this.publisherRss.getPublisherRssNo() == 49) {
+            if(Arrays.stream(utcTime).anyMatch(rssNo -> this.publisherRss.getPublisherRssNo() == rssNo)) {
                 pubDate = pubDateLDT.plusHours(9).toString();
             } else {
                 pubDate = pubDateLDT.toString();
