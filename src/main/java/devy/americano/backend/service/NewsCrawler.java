@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 import java.util.Arrays;
 
 public class NewsCrawler {
-    private static final Integer[] httpToHttps = new Integer[] { 45 };
+    private static final Integer[] httpToHttps = new Integer[] { 35, 45 };
     private final PublisherRss publisherRss;
     private final News news;
     private final Document document;

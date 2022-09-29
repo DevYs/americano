@@ -30,15 +30,6 @@ public class PublisherRssService {
         RssParser rssParser;
 
         for(PublisherRss publisherRss : publisherRssList) {
-            if(publisherRss.getPublisherRssNo() == 5
-                    || publisherRss.getPublisherRssNo() == 9
-                    || publisherRss.getPublisherRssNo() == 17
-                    || publisherRss.getPublisherRssNo() == 35
-                    || publisherRss.getPublisherRssNo() == 45
-            ) {
-                continue;
-            }
-
             logger.info("Publisher " + publisherRss.getName());
             logger.info("RssUrl " + publisherRss.getRssUrl());
             try {
