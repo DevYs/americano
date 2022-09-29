@@ -47,7 +47,12 @@ public class NewsCrawler {
         if(0 < document.select("meta[property='og:image']").size()) {
             String content = document.select("meta[property='og:image']").get(0).attr("content");
             if(0 < content.trim().length()) {
-                news.setImage(content);
+                if(publisherRss.getPublisherRssNo() == 61) {
+                    news.setImage(content.replace("adrnews.co", "happytoday").replace("thumbnail", "photo"));
+                } else {
+                    news.setImage(content);
+                }
+
                 return this;
             }
         }
