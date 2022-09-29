@@ -5,7 +5,10 @@ import devy.americano.backend.domain.PublisherRss;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.util.Arrays;
+
 public class NewsCrawler {
+    private static final Integer[] httpToHttps = new Integer[] { 45 };
     private final PublisherRss publisherRss;
     private final News news;
     private final Document document;
@@ -20,6 +23,10 @@ public class NewsCrawler {
         try {
             if(!news.getLink().contains("http://") && !news.getLink().contains("https://")) {
                 return new NewsCrawler(publisherRss, news, Jsoup.connect(publisherRss.getDomain() + news.getLink()).get());
+            }
+
+            if(Arrays.stream(httpToHttps).anyMatch(rssNo -> publisherRss.getPublisherRssNo() == rssNo)) {
+                news.setLink(news.getLink().replace("http", "https"));
             }
 
             return new NewsCrawler(publisherRss, news, Jsoup.connect(news.getLink()).get());
