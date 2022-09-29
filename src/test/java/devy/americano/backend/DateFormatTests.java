@@ -16,7 +16,7 @@ public class DateFormatTests {
     /** 언론사 RSS 정보가 0건인 경우 실패 */
     @Test
     public void testDateFormat() {
-        LocalDateTime format = DateFormatter.format("Wed, 28 Sep 2022 14:50:37 KST");
+        LocalDateTime format = DateFormatter.format("2022.09.29");
         logger.info(format.toString());
     }
 
