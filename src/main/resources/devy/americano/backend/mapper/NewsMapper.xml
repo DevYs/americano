@@ -15,6 +15,7 @@
           or description is null
           or pub_date is null
           or image is null
+         and card_type = 0
         order by reg_date desc
         limit 0, 1
         ;
@@ -39,6 +40,7 @@
           and n.description is not null
           and n.pub_date is not null
           and n.image is not null
+          and n.card_type = 1 or n.card_type = 2
         order by n.reg_date desc
         limit #{offset}, #{limit}
         ;

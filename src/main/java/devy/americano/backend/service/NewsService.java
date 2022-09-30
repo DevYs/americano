@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 뉴스관련 처리
@@ -25,6 +25,8 @@ public class NewsService {
     private final NewsMapper newsMapper;
 
     private boolean inAddingNews = false;
+
+    private final Random random = new Random();
 
     public List<News> newsList() {
         return newsMapper.selectAllNews();
@@ -48,10 +50,13 @@ public class NewsService {
                 logger.info(news.getLink());
                 NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
                 news.setRegDateLDT(LocalDateTime.now());
+                news.setCardType(random.nextInt(10) < 3 ? 1 : 2);
                 newsMapper.updateNews(news);
             } catch(Exception e) {
                 logger.info("Error to Crawling : " + news.getLink());
                 e.printStackTrace();
+                news.setCardType(-1);
+                newsMapper.updateNews(news);
             }
         }
     }

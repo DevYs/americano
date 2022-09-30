@@ -45,6 +45,7 @@ public class News {
     }
 
     public void setRegDate(String regDate) {
+        regDate = regDate.replace("T", " ");
         this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
     }
 

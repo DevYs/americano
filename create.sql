@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS news (
     pub_date            TEXT        NOT NULL,
     image               TEXT        ,
     author              TEXT        ,
-    card_type           INTEGER     NOT NULL,
+    card_type           INTEGER     NOT NULL DEFAULT 0,
     reg_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(publisher_rss_no) REFERENCES publisher_rss(publisher_rss_no)
 );
