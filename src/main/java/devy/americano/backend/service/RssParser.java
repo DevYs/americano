@@ -88,7 +88,10 @@ public class RssParser {
 
     private String getTitle(Element item) {
         if(0 < item.getElementsByTag("title").size()) {
-            return item.getElementsByTag("title").get(0).text();
+            String title = item.getElementsByTag("title").get(0).text();
+            title = title.replace("<![CDATA[", "");
+            title = title.replace("]]>", "");
+            return title;
         }
 
         return null;
@@ -96,7 +99,9 @@ public class RssParser {
 
     private String getDescription(Element item) {
         if(0 < item.getElementsByTag("description").size()) {
-            return item.getElementsByTag("description").get(0).text();
+            String description = item.getElementsByTag("description").get(0).text();
+            description = description.replace("<![CDATA[", "");
+            description = description.replace("]]>", "");
         }
 
         return null;
