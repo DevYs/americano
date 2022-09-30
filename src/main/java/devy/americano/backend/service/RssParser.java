@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RssParser {
+    private final int PARSING_LIMIT_SIZE = 20;
     private final Integer[] utcTime = new Integer[] { 33, 49 };
     private final Logger logger = LoggerFactory.getLogger(RssParser.class);
     private final PublisherRss publisherRss;
@@ -45,8 +46,8 @@ public class RssParser {
         Elements items = document.getElementsByTag("item");
 
         int limit = items.size();
-        if(10 < limit) {
-            limit = 10;
+        if(PARSING_LIMIT_SIZE < limit) {
+            limit = PARSING_LIMIT_SIZE;
         }
 
         if(items.size() == 0) {

@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,12 +18,15 @@ import java.util.stream.Collectors;
 @Service
 public class PublisherRssService {
 
+    private boolean isCrawling = false;
+
     private final Logger logger = LoggerFactory.getLogger(PublisherRssService.class);
 
     /** 언론사 RSS 정보 Mapper */
     private final PublisherRssMapper publisherRssMapper;
 
     public List<News> rss() {
+        isCrawling = true;
         List<News> newsList = new ArrayList<>();
         List<PublisherRss> publisherRssList = publisherRssMapper.selectAllPublisherRss();
         RssParser rssParser;
@@ -43,6 +45,7 @@ public class PublisherRssService {
             }
 
             List<News> list = rssParser.getNewsList();
+            logger.info("Size " + list.size());
             for(News news : list) {
                 if(news.getLink() != null && !news.getLink().trim().isEmpty()) {
                     try {
@@ -57,6 +60,8 @@ public class PublisherRssService {
             newsList.addAll(list);
         }
 
+        isCrawling = false;
+
         List<News> list = newsList.stream().filter(news -> !news.hasNull()).collect(Collectors.toList());
         Collections.shuffle(list);
 
@@ -68,6 +73,10 @@ public class PublisherRssService {
         logger.info("========================================================================");
         logger.info("========================================================================");
         return list;
+    }
+
+    public boolean isCrawling() {
+        return isCrawling;
     }
 
     public List<News> rssByNo(int rssNo) {

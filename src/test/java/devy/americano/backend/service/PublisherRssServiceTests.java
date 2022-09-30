@@ -35,10 +35,11 @@ public class PublisherRssServiceTests {
     @Test
     public void testRequestRssByNo() {
         Logger logger = LoggerFactory.getLogger(PublisherRssServiceTests.class);
-        List<News> newsList = publisherRssService.rssByNo(61);
+        List<News> newsList = publisherRssService.rssByNo(64);
         for(News news : newsList) {
             logger.info(news.toString());
         }
+        newsService.insertNewsList(newsList);
     }
 
     @Test
