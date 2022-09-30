@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @EnableScheduling
 @RequiredArgsConstructor
 public class NewsRemoveScheduler {
-    private final long FIXED_RATE_VALUE = 1 * 60 * 1000;
+    private final long FIXED_RATE_VALUE = 60 * 60 * 1000;
 
     private final PublisherRssService publisherRssService;
     private final NewsService newsService;
