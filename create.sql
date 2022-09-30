@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS publisher_rss (
     favicon             TEXT        NOT NULL,
     name                TEXT        NOT NULL,
     rss_url             TEXT        NOT NULL,
+    domain              TEXT        ,
     reg_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP,
     mod_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
