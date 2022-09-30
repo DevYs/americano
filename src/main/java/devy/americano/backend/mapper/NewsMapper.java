@@ -14,9 +14,13 @@ public interface NewsMapper {
 
     List<News> selectAllNews();
 
+    List<News> selectNewsNotYet();
+
     List<NewsContents> selectNewsContents(@Param("limit") int limit, @Param("offset") int offset);
 
     int insertNews(News news);
+
+    int updateNews(News news);
 
     int deleteOldNews(@Param("date") LocalDateTime date);
 }

@@ -8,6 +8,18 @@
         ;
     </select>
 
+    <select id="selectNewsNotYet" resultType="devy.americano.backend.domain.News">
+        select * from news
+        where title is null
+          or link is null
+          or description is null
+          or pub_date is null
+          or image is null
+        order by reg_date desc
+        limit 0, 1
+        ;
+    </select>
+
     <select id="selectNewsContents" resultType="devy.americano.backend.domain.NewsContents">
         select
             n.news_no,
@@ -22,7 +34,12 @@
             n.card_type
         from news n
         join publisher_rss pr on pr.publisher_rss_no = n.publisher_rss_no
-        order by n.news_no desc
+        where n.title is not null
+          and n.link is not null
+          and n.description is not null
+          and n.pub_date is not null
+          and n.image is not null
+        order by n.reg_date desc
         limit #{offset}, #{limit}
         ;
     </select>
@@ -31,6 +48,20 @@
         insert or ignore into news ( publisher_rss_no, title, link, description, pub_date, image, author, card_type )
         values ( #{publisherRssNo}, #{title}, #{link}, #{description}, #{pubDate}, #{image}, #{author}, #{cardType} );
     </insert>
+
+    <update id="updateNews">
+        update news
+        set title = #{title},
+            link = #{link},
+            description = #{description},
+            image = #{image},
+            pub_date = #{pubDate},
+            author = #{author},
+            reg_date = #{regDate}
+        where
+            news_no = #{newsNo}
+        ;
+    </update>
 
     <delete id="deleteOldNews">
         delete from news

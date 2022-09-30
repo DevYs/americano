@@ -18,15 +18,12 @@ import java.util.stream.Collectors;
 @Service
 public class PublisherRssService {
 
-    private boolean isCrawling = false;
-
     private final Logger logger = LoggerFactory.getLogger(PublisherRssService.class);
 
     /** 언론사 RSS 정보 Mapper */
     private final PublisherRssMapper publisherRssMapper;
 
     public List<News> rss() {
-        isCrawling = true;
         List<News> newsList = new ArrayList<>();
         List<PublisherRss> publisherRssList = publisherRssMapper.selectAllPublisherRss();
         RssParser rssParser;
@@ -46,24 +43,10 @@ public class PublisherRssService {
 
             List<News> list = rssParser.getNewsList();
             logger.info("Size " + list.size());
-            for(News news : list) {
-                if(news.getLink() != null && !news.getLink().trim().isEmpty()) {
-                    try {
-                        NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
-                    } catch(Exception e) {
-                        logger.info("Error to Crawling : " + news.getLink());
-                        e.printStackTrace();
-                    }
-                }
-            }
-
             newsList.addAll(list);
         }
 
-        isCrawling = false;
-
-        List<News> list = newsList.stream().filter(news -> !news.hasNull()).collect(Collectors.toList());
-        Collections.shuffle(list);
+        Collections.shuffle(newsList);
 
         logger.info("========================================================================");
         logger.info("========================================================================");
@@ -72,11 +55,7 @@ public class PublisherRssService {
         logger.info("========================================================================");
         logger.info("========================================================================");
         logger.info("========================================================================");
-        return list;
-    }
-
-    public boolean isCrawling() {
-        return isCrawling;
+        return newsList;
     }
 
     public List<News> rssByNo(int rssNo) {

@@ -40,6 +40,10 @@ public class News {
         }
     }
 
+    public void setRegDateLDT(LocalDateTime regDate) {
+        this.regDate = regDate;
+    }
+
     public void setRegDate(String regDate) {
         this.regDate = LocalDateTime.parse(regDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).plusHours(9);
     }

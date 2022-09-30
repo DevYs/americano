@@ -12,15 +12,16 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableScheduling
 @RequiredArgsConstructor
-public class DeleteNewsScheduler {
-    private final long INITIAL_DELAY_VALUE = 5 * 60 * 1000;
-    private final long FIXED_RATE_VALUE = 60 * 60 * 1000;
+public class CrawlingNewsScheduler {
+    private final Logger logger = LoggerFactory.getLogger(CrawlingNewsScheduler.class);
+
+    private final long FIXED_RATE_VALUE = 1 * 1000;
 
     private final NewsService newsService;
 
-    @Scheduled(fixedRate = FIXED_RATE_VALUE, initialDelay = INITIAL_DELAY_VALUE)
+    @Scheduled(fixedRate = FIXED_RATE_VALUE)
     public void run() {
-        newsService.removeOldNews();
+        newsService.newsCrawling();
     }
 
 }
