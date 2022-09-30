@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS news (
     link                TEXT        UNIQUE NOT NULL,
     description         TEXT        ,
     pub_date            TEXT        NOT NULL,
-    image               TEXT        NOT NULL,
+    image               TEXT        ,
     author              TEXT        ,
     card_type           INTEGER     NOT NULL,
     reg_date            NUMERIC     NOT NULL DEFAULT CURRENT_TIMESTAMP,
