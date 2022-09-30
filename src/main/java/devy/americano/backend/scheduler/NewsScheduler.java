@@ -26,12 +26,11 @@ public class NewsScheduler {
 
     private final NewsService newsService;
 
-    public static boolean isCrawling = false;
-
     @Scheduled(fixedRate = FIXED_RATE_VALUE, initialDelay = INITIAL_DELAY_VALUE)
     public void run() {
         List<News> newsList = publisherRssService.rss();
         newsService.insertNewsList(newsList);
+        newsService.removeOldNews();
     }
 
 }
