@@ -102,6 +102,7 @@ public class RssParser {
             String description = item.getElementsByTag("description").get(0).text();
             description = description.replace("<![CDATA[", "");
             description = description.replace("]]>", "");
+            return description;
         }
 
         return null;

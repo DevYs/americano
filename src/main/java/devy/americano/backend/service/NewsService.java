@@ -4,9 +4,10 @@ import devy.americano.backend.domain.News;
 import devy.americano.backend.domain.NewsContents;
 import devy.americano.backend.mapper.NewsMapper;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class NewsService {
+    private final Logger logger = LoggerFactory.getLogger(NewsService.class);
     private final NewsMapper newsMapper;
 
     public List<News> newsList() {
