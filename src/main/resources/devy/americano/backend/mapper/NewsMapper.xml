@@ -34,7 +34,7 @@
 
     <delete id="deleteOldNews">
         delete from news
-        where reg_date &lt; #{date};
+        where pub_date &lt; #{date};
     </delete>
 
 </mapper>
