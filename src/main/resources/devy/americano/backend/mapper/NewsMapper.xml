@@ -9,7 +9,17 @@
     </select>
 
     <select id="selectNewsNotYet" resultType="devy.americano.backend.domain.News">
-        select * from news
+        select
+            news_no,
+            publisher_rss_no,
+            title,
+            link,
+            description,
+            pub_date,
+            image,
+            author,
+            card_type
+        from news
         where title is null
           or link is null
           or description is null

@@ -26,8 +26,7 @@ public class NewsScheduler {
 
     private final NewsService newsService;
 
-//    @Scheduled(fixedRate = FIXED_RATE_VALUE, initialDelay = INITIAL_DELAY_VALUE)
-    @Scheduled(fixedRate = 600000)
+    @Scheduled(fixedRate = FIXED_RATE_VALUE, initialDelay = INITIAL_DELAY_VALUE)
     public void run() {
         List<News> newsList = publisherRssService.rss();
         newsService.insertNewsList(newsList);

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 public class CrawlingNewsScheduler {
     private final Logger logger = LoggerFactory.getLogger(CrawlingNewsScheduler.class);
 
-    private final long FIXED_RATE_VALUE = 1 * 1000;
+    private final long FIXED_RATE_VALUE = 5 * 1000;
 
     private final NewsService newsService;
 
