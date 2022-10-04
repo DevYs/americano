@@ -69,6 +69,7 @@
             image = #{image},
             pub_date = #{pubDate},
             author = #{author},
+            card_type = #{cardType},
             reg_date = #{regDate}
         where
             news_no = #{newsNo}
