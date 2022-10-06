@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,6 +29,8 @@ public class NewsService {
 
     private final Random random = new Random();
 
+    private final List<News> beforeUpdate = new ArrayList<>();
+
     public List<News> newsList() {
         return newsMapper.selectAllNews();
     }
@@ -42,6 +45,16 @@ public class NewsService {
             return;
         }
 
+        if(beforeUpdate.size() == 20) {
+            for(News news : beforeUpdate) {
+                newsMapper.updateNews(news);
+            }
+
+            beforeUpdate.clear();
+
+            return;
+        }
+
         News news = newsList.get(0);
         PublisherRss publisherRss = publisherRssMapper.selectPublisherRssByNo(news.getPublisherRssNo());
 
@@ -51,7 +64,7 @@ public class NewsService {
                 NewsCrawler.newsCrawler(publisherRss, news).image().author().pubDate();
                 news.setRegDateLDT(LocalDateTime.now());
                 news.setCardType(random.nextInt(10) < 3 ? 1 : 2);
-                newsMapper.updateNews(news);
+                beforeUpdate.add(news);
             } catch(Exception e) {
                 logger.info("Error to Crawling : " + news.getLink());
                 e.printStackTrace();
